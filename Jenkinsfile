@@ -1,5 +1,6 @@
 pipeline {
   agent any
+  stages {
     stage('AWS Credentials') {
       steps {
         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'blueocean', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
@@ -15,10 +16,10 @@ pipeline {
         }
       }
     }
-    stage('Create EC2 Instance') {
+    stage('EC2') {
       steps {
         ansiblePlaybook playbook: 'main.yaml', inventory: 'inventory'
       }
     }
-  
+  }
 }
