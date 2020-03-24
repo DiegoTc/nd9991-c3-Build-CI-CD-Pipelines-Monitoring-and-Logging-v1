@@ -1,10 +1,9 @@
 pipeline {
   agent any
-  stages {
     stage('AWS Credentials') {
       steps {
         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'blueocean', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-        sh """  
+        sh """
                mkdir -p ~/.aws
                echo "[default]" >~/.aws/credentials
                echo "[default]" >~/.boto
@@ -21,5 +20,5 @@ pipeline {
         ansiblePlaybook playbook: 'main.yaml', inventory: 'inventory'
       }
     }
-  }
+  
 }
