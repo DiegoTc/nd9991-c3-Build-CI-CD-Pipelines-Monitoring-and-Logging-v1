@@ -1,7 +1,7 @@
 - name: Install boto3 and botocore with pip3 module
   pip:
     name:
-      - boto3
+      - boto
       - botocore
     executable: pip3
 
