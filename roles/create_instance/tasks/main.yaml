@@ -3,7 +3,7 @@
     name:
       - boto3
       - botocore
-    executable: pip-3.7
+    executable: pip3
 
 - name: Create the ELB only listening over port 80
   ec2_elb_lb:
